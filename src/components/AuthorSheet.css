@@ -1,0 +1,94 @@
+/* This used to bottom-anchor on phone widths (align-items: flex-end) —
+ * on iOS Safari, a fixed-position element pinned to the bottom of the
+ * LAYOUT viewport stays there even once the keyboard opens and shrinks
+ * the VISUAL one, so the Skip/Submit row (the sheet's own last, lowest
+ * elements) ended up sitting right under the keyboard, invisible, the
+ * moment the Name field was focused. Centering unconditionally keeps the
+ * whole sheet comfortably clear of the keyboard on every device tested. */
+.author-sheet-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  background: rgba(0, 0, 0, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  animation: author-sheet-fade 0.2s ease-out;
+}
+
+@keyframes author-sheet-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.author-sheet {
+  width: 100%;
+  max-width: 380px;
+  max-height: 100%;
+  overflow-y: auto;
+  animation: author-sheet-in 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+@keyframes author-sheet-in {
+  from {
+    transform: translateY(24px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.author-sheet__glass {
+  width: 100%;
+}
+
+.author-sheet__content {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.author-sheet__title {
+  margin: 0;
+}
+
+.author-sheet__hint {
+  margin: 0 0 6px;
+}
+
+.author-sheet__input {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(127, 127, 127, 0.12);
+  border: 1px solid rgba(127, 127, 127, 0.2);
+  outline: none;
+}
+
+.author-sheet__actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.author-sheet__skip {
+  font-weight: 600;
+  padding: 10px 6px;
+}
+
+.author-sheet__submit {
+  flex: 1;
+  padding: 13px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-align: center;
+}

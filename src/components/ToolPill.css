@@ -1,0 +1,270 @@
+.tool-pill-root {
+  z-index: 20;
+  touch-action: none;
+  user-select: none;
+}
+
+.tool-pill__stage {
+  display: grid;
+}
+
+.tool-pill__puck,
+.tool-pill__full {
+  grid-area: 1 / 1;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.tool-pill__puck[data-hidden="true"],
+.tool-pill__full[data-hidden="true"] {
+  opacity: 0;
+  transform: scale(0.85);
+  pointer-events: none;
+}
+
+/* ---------------- puck ---------------- */
+
+.tool-pill__puck-glass {
+  width: 46px;
+  height: 46px;
+}
+
+.tool-pill__puck-button {
+  width: 46px;
+  height: 46px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.tool-pill__puck-dot {
+  border-radius: 50%;
+  display: block;
+}
+
+/* ---------------- full pill ---------------- */
+
+.tool-pill__full-glass {
+  display: flex;
+  align-items: center;
+}
+
+.tool-pill__full-glass.is-row {
+  flex-direction: row;
+  padding: 12px 6px;
+}
+
+.tool-pill__full-glass.is-column {
+  flex-direction: column;
+  padding: 6px 12px;
+}
+
+.tool-pill__nib-button,
+.tool-pill__ink-button,
+.tool-pill__action-button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.tool-pill__nib-button {
+  width: 40px;
+  height: 40px;
+}
+
+.tool-pill__nib-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+}
+
+.tool-pill__nib-dot {
+  position: relative;
+  border-radius: 50%;
+  display: block;
+}
+
+.tool-pill__ink-button {
+  width: 36px;
+  height: 36px;
+}
+
+.tool-pill__ink-swatch {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: block;
+}
+
+.tool-pill__ink-selected-ring {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  box-sizing: border-box;
+}
+
+.tool-pill__divider {
+  border-radius: 1px;
+  margin: 4px;
+  flex-shrink: 0;
+}
+
+.tool-pill__action-button {
+  width: 38px;
+  height: 38px;
+}
+
+/* ---------------- nib popover ---------------- */
+
+.tool-pill__popover {
+  position: absolute;
+  z-index: 30;
+}
+
+.tool-pill__popover--top {
+  bottom: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tool-pill__popover--bottom {
+  top: calc(100% + 12px);
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.tool-pill__popover--leading {
+  right: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tool-pill__popover--trailing {
+  left: calc(100% + 12px);
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.tool-pill__popover-glass {
+  width: 230px;
+}
+
+.tool-pill__popover-content {
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.tool-pill__popover-label {
+  line-height: 1.3;
+}
+
+.tool-pill__popover-blurb {
+  line-height: 1.4;
+}
+
+/* ---------------- compact bottom sheet ---------------- */
+
+.tool-pill__sheet-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 29;
+  background: rgba(0, 0, 0, 0.001);
+}
+
+.tool-pill__sheet {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 30;
+  padding: 0 12px calc(12px + env(safe-area-inset-bottom, 0px));
+  animation: tool-pill-sheet-in 0.25s cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+.tool-pill__sheet-glass {
+  width: 100%;
+}
+
+@keyframes tool-pill-sheet-in {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+/* ---------------- sticker popover ---------------- */
+
+.tool-pill__sticker-glass {
+  width: 272px;
+}
+
+.tool-pill__sticker-content {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.tool-pill__sticker-label {
+  margin: 0;
+  text-transform: uppercase;
+}
+
+.tool-pill__sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 6px;
+}
+
+.tool-pill__sticker-emoji {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  font-size: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(127, 127, 127, 0.12);
+  transition: background 0.15s, transform 0.15s;
+}
+
+.tool-pill__sticker-emoji:hover {
+  background: rgba(127, 127, 127, 0.22);
+  transform: scale(1.08);
+}
+
+.tool-pill__sticker-swatches {
+  display: flex;
+  gap: 8px;
+}
+
+.tool-pill__sticker-swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(127, 127, 127, 0.25);
+  transition: transform 0.15s;
+}
+
+.tool-pill__sticker-swatch:hover {
+  transform: scale(1.1);
+}
+
+.tool-pill__sticker-signature {
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+}

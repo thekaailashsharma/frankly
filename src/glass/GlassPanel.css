@@ -1,0 +1,42 @@
+/* `:root[data-scheme="dark"]` below never matched anything — nothing in
+ * this app ever sets that attribute — so every GlassPanel anywhere used
+ * this rule's barely-there shadow (0 1px 2px at 6% opacity) regardless of
+ * what it was floating over. Against a genuinely dark screen (Station)
+ * that reads as a flat grey sticker, not a pane of glass with any real
+ * presence. This is the actual default now: a proper elevation shadow and
+ * a crisp bright rim on the top edge, the two things that sell "glass
+ * floating above the page" rather than "translucent rectangle pasted on
+ * it" — visible on any backdrop, light or dark, without needing a
+ * same-never-fires selector to switch it on. */
+.glass-panel {
+  position: relative;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.75),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.05),
+    0 10px 28px rgba(0, 0, 0, 0.22),
+    0 2px 8px rgba(0, 0, 0, 0.14);
+  isolation: isolate;
+}
+
+/* Dark wash — the rim reads best a little dimmer here (a full-strength
+ * white top edge against dark content behind it turns into a jarring
+ * hairline) and the elevation shadow leans harder since the panel itself
+ * blends closer to whatever it's floating over. */
+.glass-panel--dark {
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.3),
+    0 12px 32px rgba(0, 0, 0, 0.45),
+    0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Transparent to layout: the outer .glass-panel owns visual effects
+ * (background, blur, the SVG filter), but any flex/grid the caller sets
+ * via className must govern the real children, not stop one level short
+ * at this wrapper. `display: contents` removes this box from the layout
+ * tree entirely while keeping the DOM nesting the filter markup needs. */
+.glass-panel__content {
+  display: contents;
+}

@@ -1,0 +1,109 @@
+.event-shell {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.event-shell__content {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.event-shell__content > * {
+  height: 100%;
+}
+
+.event-shell__content--bottom-nav {
+  order: 1;
+}
+
+.event-shell__content--top-nav {
+  order: 2;
+}
+
+/* The nav strip itself is transparent and just reserves layout space —
+ * the visible pill is the GlassPanel floating inside it, inset from the
+ * screen edges on every side. This is what keeps it reading as a floating
+ * control (matching the tool palette, the popovers, every other piece of
+ * chrome in the app) instead of a flat edge-to-edge website navbar. */
+.event-shell__nav {
+  z-index: 50;
+  display: flex;
+  justify-content: center;
+  pointer-events: none;
+}
+
+.event-shell__nav > * {
+  pointer-events: auto;
+}
+
+.event-shell__nav--bottom {
+  order: 2;
+  padding: 10px max(14px, env(safe-area-inset-left)) max(14px, env(safe-area-inset-bottom));
+}
+
+.event-shell__nav--top {
+  order: 1;
+  padding: 14px max(16px, env(safe-area-inset-left));
+}
+
+.event-shell__glass {
+  /* Shadow/rim now come from GlassPanel's own default — this used to
+   * duplicate (and, depending on stylesheet load order, sometimes
+   * silently override) that with a weaker shadow of its own. */
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+}
+
+.event-shell__tab {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  min-width: 62px;
+  transition: color 0.2s;
+  overflow: hidden;
+}
+
+.event-shell__nav--top .event-shell__tab {
+  flex-direction: row;
+  gap: 8px;
+  padding: 10px 20px;
+}
+
+.event-shell__tab-fill {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  z-index: -1;
+}
+
+.event-shell__tab-icon {
+  font-size: 17px;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.event-shell__nav--top .event-shell__tab-icon {
+  font-size: 15px;
+}
+
+.event-shell__tab-label {
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .event-shell__tab,
+  .event-shell__tab-icon {
+    transition: none;
+  }
+}

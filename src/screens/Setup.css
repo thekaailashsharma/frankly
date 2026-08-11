@@ -1,0 +1,431 @@
+/* height:100%/min-height:0 override the base `.screen` class's
+ * min-height:100dvh — a pure floor with no ceiling, which meant this
+ * element (and everything inside it) simply grew to whatever height its
+ * content wanted rather than ever presenting a bounded box its own
+ * overflow-y:auto could act on. This now exactly fills whichever parent
+ * it's in — the viewport on the standalone "/" route, or the shell's
+ * bounded content area on "/event/:id/setup" — and scrolls internally
+ * either way. */
+.setup {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.setup--loading {
+  background: var(--bg-base);
+}
+
+.setup--locked {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-lg);
+}
+
+.setup__locked-card {
+  position: relative;
+  z-index: 1;
+  width: min(420px, 100%);
+  background: rgba(20, 20, 20, 0.55);
+  backdrop-filter: blur(24px) saturate(1.6);
+  -webkit-backdrop-filter: blur(24px) saturate(1.6);
+  border-radius: var(--radius-lg, 22px);
+  padding: var(--space-xl) var(--space-lg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  color: #f7f5f0;
+}
+
+.setup__locked-title {
+  margin: 0;
+}
+
+.setup__locked-body {
+  margin: 0 0 var(--space-sm);
+  opacity: 0.75;
+}
+
+.setup__backdrop {
+  position: fixed;
+  z-index: 0;
+}
+
+.setup__scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.setup__scrim--dark {
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.15) 0%, rgba(0, 0, 0, 0.35) 100%);
+}
+
+.setup__scrim--light {
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.1) 0%, rgba(0, 0, 0, 0.06) 100%);
+}
+
+.setup__layout {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100dvh;
+  padding: var(--space-xl) var(--space-lg) max(var(--space-xl), env(safe-area-inset-bottom));
+  gap: var(--space-lg);
+}
+
+.setup__header {
+  width: min(640px, 100%);
+  text-align: left;
+}
+
+.setup__eyebrow {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin: 0 0 var(--space-xs);
+}
+
+.setup__title {
+  margin: 0;
+  line-height: 1.05;
+  word-break: break-word;
+}
+
+/* No flex:1 — GlassCard's own overflow:hidden makes this a flex item
+ * that establishes an independent formatting context, whose automatic
+ * minimum size the flex spec then defines as zero. Concretely: flex:1
+ * let this card shrink to whatever space was left after the header,
+ * silently clipping the theme grid and the Create button beneath the
+ * fold with no scrollbar, no visible cutoff line — just gone. Sized to
+ * its own content instead; `.setup`'s scroll handles the rest. */
+.setup__card {
+  width: min(640px, 100%);
+  margin-bottom: var(--space-xl);
+}
+
+.setup__card-inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding: var(--space-lg);
+}
+
+.setup__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.setup__section-title {
+  margin: 0;
+  opacity: 0.55;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.setup__input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  border-radius: var(--radius-md);
+  background: rgba(127, 127, 127, 0.1);
+  border: 1px solid rgba(127, 127, 127, 0.18);
+  color: inherit;
+  outline: none;
+  transition: border-color var(--motion-fast);
+}
+
+.setup__input:focus {
+  border-color: currentColor;
+}
+
+.setup__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+}
+
+.setup__chip {
+  padding: 6px 12px;
+  border-radius: var(--radius-capsule);
+  background: rgba(127, 127, 127, 0.12);
+  font-size: 12.5px;
+  line-height: 1.3;
+  color: inherit;
+  opacity: 0.85;
+  text-align: left;
+  transition: background var(--motion-fast), opacity var(--motion-fast);
+}
+
+.setup__chip:hover {
+  background: rgba(127, 127, 127, 0.2);
+  opacity: 1;
+}
+
+.setup__modes {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-sm);
+}
+
+.setup__mode {
+  text-align: left;
+  padding: var(--space-md);
+  border-radius: var(--radius-md);
+  background: rgba(127, 127, 127, 0.08);
+  border: 1px solid rgba(127, 127, 127, 0.14);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background var(--motion-fast), border-color var(--motion-fast), transform var(--motion-fast);
+}
+
+.setup__mode:hover {
+  background: rgba(127, 127, 127, 0.14);
+}
+
+.setup__mode--selected {
+  background: rgba(127, 127, 127, 0.2);
+  border-color: currentColor;
+}
+
+.setup__mode-title {
+  display: block;
+}
+
+.setup__mode-blurb {
+  display: block;
+  opacity: 0.65;
+}
+
+.setup__themes {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.setup__theme-chip {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  transition: outline-color var(--motion-fast), transform var(--motion-fast);
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 6px;
+}
+
+.setup__theme-chip:hover {
+  transform: scale(1.03);
+}
+
+.setup__theme-chip--selected {
+  outline-color: currentColor;
+}
+
+.setup__theme-chip-label {
+  letter-spacing: 0.02em;
+}
+
+.setup__theme-chip--match {
+  background: rgba(127, 127, 127, 0.12);
+  border: 1px dashed rgba(127, 127, 127, 0.4);
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  text-align: center;
+}
+
+.setup__edges {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-sm);
+}
+
+.setup__edge {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: var(--space-xs);
+  border-radius: var(--radius-md);
+  background: rgba(127, 127, 127, 0.08);
+  border: 1px solid transparent;
+  transition: background var(--motion-fast), border-color var(--motion-fast);
+}
+
+.setup__edge:hover {
+  background: rgba(127, 127, 127, 0.14);
+}
+
+.setup__edge--selected {
+  border-color: currentColor;
+  background: rgba(127, 127, 127, 0.2);
+}
+
+.setup__edge-frame {
+  width: 40px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(127, 127, 127, 0.35);
+  padding: 4px;
+}
+
+.setup__edge-pill {
+  width: 14px;
+  height: 5px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.75;
+}
+
+.setup__edge-label {
+  opacity: 0.6;
+}
+
+.setup__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-md);
+  padding-top: var(--space-xs);
+}
+
+.setup__switch {
+  width: 42px;
+  height: 26px;
+  border-radius: 999px;
+  background: rgba(127, 127, 127, 0.3);
+  position: relative;
+  flex-shrink: 0;
+  transition: background var(--motion-fast);
+}
+
+.setup__switch-knob {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 999px;
+  background: currentColor;
+  opacity: 0.9;
+  transition: transform var(--motion-standard);
+}
+
+.setup__switch--on {
+  background: rgba(127, 127, 127, 0.55);
+}
+
+.setup__switch--on .setup__switch-knob {
+  transform: translateX(16px);
+}
+
+.setup__hint {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.6;
+}
+
+.setup__link-row {
+  display: flex;
+  gap: 8px;
+}
+
+.setup__link-input {
+  flex: 1;
+  font-size: 12.5px;
+  opacity: 0.75;
+}
+
+.setup__pin-display {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-align: center;
+  opacity: 1;
+  flex: none;
+  width: 160px;
+}
+
+.setup__link-copy {
+  padding: 0 18px;
+  border-radius: var(--radius-md);
+  background: rgba(127, 127, 127, 0.16);
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.setup__link-copy:hover {
+  background: rgba(127, 127, 127, 0.26);
+}
+
+.setup__secondary {
+  align-self: flex-start;
+  padding: 8px 16px;
+  border-radius: var(--radius-capsule);
+  background: rgba(127, 127, 127, 0.14);
+  font-size: 14px;
+  color: inherit;
+  transition: background var(--motion-fast);
+}
+
+.setup__secondary:hover {
+  background: rgba(127, 127, 127, 0.22);
+}
+
+.setup__spacer {
+  flex: 1;
+}
+
+.setup__cta {
+  height: 52px;
+  border-radius: var(--radius-md);
+  /* Two distinct variables, not currentColor — currentColor on this
+   * element resolves to *this element's own* `color`, which is also
+   * being set below, so background and text silently became the same
+   * value and the button rendered as an invisible blank rectangle. */
+  background: var(--setup-ink, #000);
+  color: var(--setup-surface, #fff);
+  font-size: var(--type-headline);
+  font-weight: 600;
+}
+
+.setup__foot {
+  margin: 0;
+  font-size: 12.5px;
+  opacity: 0.55;
+  text-align: center;
+}
+
+@media (max-width: 700px) {
+  .setup__modes,
+  .setup__themes {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .setup__layout {
+    padding: var(--space-lg) var(--space-md) max(var(--space-xl), env(safe-area-inset-bottom));
+  }
+
+  .setup__card-inner {
+    padding: var(--space-md);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .setup__theme-chip,
+  .setup__switch-knob {
+    transition: none;
+  }
+}

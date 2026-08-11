@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family:
+    -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+  background: var(--bg-base);
+  color: var(--content-primary);
+  overscroll-behavior: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+button {
+  font-family: inherit;
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: inherit;
+}
+
+button:disabled {
+  cursor: default;
+  opacity: 0.4;
+}
+
+input,
+textarea {
+  font-family: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* Screens are full-bleed by default, but normal page flow — if content
+ * doesn't fit a short viewport, the browser scrolls it like any other
+ * page. Only the writing surface (below) locks scrolling, because a
+ * canvas mid-stroke genuinely cannot tolerate the page moving under it. */
+.screen {
+  position: relative;
+  min-height: 100dvh;
+  animation: screen-enter var(--motion-standard) both;
+}
+
+@keyframes screen-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    animation: none;
+  }
+}
+
+.screen--scroll {
+  min-height: 100dvh;
+  overflow-y: auto;
+}
+
+/* Opt-in only — the drawing surface, and nothing else. */
+.screen--fixed {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+}

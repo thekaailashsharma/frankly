@@ -1,0 +1,135 @@
+.artifact {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+
+.artifact__header {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.artifact__empty {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  pointer-events: none;
+}
+
+.artifact__note {
+  position: absolute;
+}
+
+.artifact__page-indicator {
+  position: absolute;
+  right: 0;
+  bottom: 18px;
+  margin: 0;
+}
+
+.artifact__host-footer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.artifact__close-row {
+  position: absolute;
+  left: 50%;
+  bottom: 44px;
+  transform: translateX(-50%);
+  z-index: 5;
+}
+
+.artifact__close-pill {
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #fff;
+  transition: opacity 0.15s ease;
+}
+
+.artifact__close-pill:disabled {
+  cursor: not-allowed;
+}
+
+.artifact__closed-label {
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: transparent;
+  opacity: 0.5;
+}
+
+.artifact__modal-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  z-index: 100;
+}
+
+.artifact__modal {
+  width: min(560px, 100%);
+  max-height: 90vh;
+  overflow-y: auto;
+  background: #1c1c22;
+  border-radius: 24px;
+  padding: 24px;
+  color: #f4f1ea;
+}
+
+.artifact__modal-signature {
+  margin-top: 12px;
+  font-size: 13px;
+  opacity: 0.7;
+  text-decoration: underline;
+  background: transparent;
+}
+
+.artifact__modal-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.artifact__modal-cancel,
+.artifact__modal-undo,
+.artifact__modal-sign {
+  flex: 1;
+  height: 46px;
+  border-radius: 12px;
+  font-weight: 600;
+}
+
+.artifact__modal-cancel {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4f1ea;
+}
+
+.artifact__modal-undo {
+  background: rgba(255, 255, 255, 0.08);
+  color: #f4f1ea;
+}
+
+.artifact__modal-undo:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.artifact__modal-sign {
+  background: #f4f1ea;
+  color: #1a1a1f;
+}

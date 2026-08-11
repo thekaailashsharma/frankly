@@ -1,0 +1,90 @@
+/* Ported 1:1 from the native app's Fonts/ bundle — same files, same names,
+ * loaded here via @font-face instead of CTFontManagerRegisterFontsForURL. */
+
+@font-face {
+  font-family: "ClashDisplay-Regular";
+  src: url("/fonts/ClashDisplay-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "ClashDisplay-Medium";
+  src: url("/fonts/ClashDisplay-Medium.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zodiak-Regular";
+  src: url("/fonts/Zodiak-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Zodiak-Light";
+  src: url("/fonts/Zodiak-Light.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi-Regular";
+  src: url("/fonts/Satoshi-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Satoshi-Medium";
+  src: url("/fonts/Satoshi-Medium.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrainsMono-Regular";
+  src: url("/fonts/JetBrainsMono-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrainsMono-Medium";
+  src: url("/fonts/JetBrainsMono-Medium.otf") format("opentype");
+  font-display: swap;
+}
+
+/* NoteFace palette — handwriting-to-type conversion faces. */
+@font-face {
+  font-family: "Comico-Regular";
+  src: url("/fonts/Comico-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Kalam-Regular";
+  src: url("/fonts/Kalam-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Britney-Regular";
+  src: url("/fonts/Britney-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Telma-Regular";
+  src: url("/fonts/Telma-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Pencerio-Hairline";
+  src: url("/fonts/Pencerio-Hairline.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Rosaline-Regular";
+  src: url("/fonts/Rosaline-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Gambarino-Regular";
+  src: url("/fonts/Gambarino-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Stardom-Regular";
+  src: url("/fonts/Stardom-Regular.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Tanker-Regular";
+  src: url("/fonts/Tanker-Regular.otf") format("opentype");
+  font-display: swap;
+}

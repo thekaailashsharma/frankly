@@ -1,0 +1,132 @@
+.station {
+  background: #000;
+}
+
+.station__backdrop {
+  z-index: 0;
+}
+
+.station__sheet-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+.station__sheet-wrap--attract,
+.station__sheet-wrap--writing,
+.station__sheet-wrap--leaving {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Writing/leaving used to be position:absolute;inset:0 — the paper filled
+ * the entire screen, which meant the live animated backdrop (the theme's
+ * generated surface or drifting cover photo) was totally hidden the whole
+ * time anyone was actually writing, on every theme. A visible margin here
+ * keeps that backdrop framing the paper at all times, which is the whole
+ * point of a themed writing surface — while the paper itself stays just
+ * as opaque as before, so none of the ink-contrast guarantees change. */
+.station__sheet-wrap--writing,
+.station__sheet-wrap--leaving {
+  padding: 22px;
+}
+
+.station__sheet {
+  position: relative;
+}
+
+.station__sheet-wrap--attract .station__sheet,
+.station__sheet-wrap--writing .station__sheet,
+.station__sheet-wrap--leaving .station__sheet {
+  flex: none;
+}
+
+@media (max-width: 700px) {
+  .station__sheet-wrap--writing,
+  .station__sheet-wrap--leaving {
+    padding: 10px;
+  }
+}
+
+.station__card-inner {
+  position: absolute;
+  inset: 0;
+}
+
+.station__attract {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  pointer-events: none;
+}
+
+.station__attract-prompt {
+  margin: 0;
+}
+
+.station__prompt-label {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.station__privacy-line {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.station__social-proof {
+  position: absolute;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+.station__social-proof-bars {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.station__social-proof-label {
+  margin: 0;
+}
+
+/* Cleared to sit above the floating tool pill's own bottom-edge zone
+ * (18px pad + its own ~50-60px height) — found by testing: both were
+ * independently anchored to the screen's bottom edge with no shared
+ * coordination, so they physically overlapped and the pill (being later
+ * in paint order) ate every click meant for Done. */
+.station__commit-bar {
+  position: absolute;
+  bottom: calc(88px + env(safe-area-inset-bottom, 0px));
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 8;
+}
+
+.station__commit-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 22px;
+  border-radius: var(--radius-capsule, 999px);
+}

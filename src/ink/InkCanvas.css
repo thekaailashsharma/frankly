@@ -1,0 +1,21 @@
+/* Absolute + inset, not width/height: 100%. A percentage-height chain
+ * through nested flex/overflow-hidden ancestors (the Station card is
+ * exactly this) can resolve to Chromium's internal LayoutUnit max
+ * (2^25px) instead of collapsing sanely — a real, reproduced bug, not a
+ * theoretical one. Anchoring to the nearest positioned ancestor's box in
+ * actual pixels sidesteps percentage resolution entirely. */
+.ink-canvas-stack {
+  position: absolute;
+  inset: 0;
+}
+
+.ink-layer {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.ink-layer--wet {
+  touch-action: none;
+  cursor: crosshair;
+}

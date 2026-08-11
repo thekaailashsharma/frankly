@@ -1,0 +1,65 @@
+.signature-onboarding {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.signature-onboarding__backdrop {
+  z-index: 0;
+}
+
+.signature-onboarding__body {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 820px;
+  display: flex;
+  flex-direction: column;
+}
+
+.signature-onboarding__heading {
+  display: flex;
+  flex-direction: column;
+}
+
+.signature-onboarding__frame {
+  padding: 10px;
+  box-shadow: 0 14px 32px rgba(0, 0, 0, 0.22);
+}
+
+.signature-onboarding__pad {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  background: var(--paper);
+}
+
+.signature-onboarding__rule {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  height: 1px;
+  pointer-events: none;
+}
+
+.signature-onboarding__actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 10px;
+}
+
+.signature-onboarding__skip,
+.signature-onboarding__clear {
+  padding: 13px 18px;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.signature-onboarding__confirm {
+  padding: 13px 22px;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 15px;
+}

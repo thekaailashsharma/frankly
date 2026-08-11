@@ -1,0 +1,121 @@
+.home {
+  background: var(--paper);
+  color: var(--paper-ink);
+  padding: max(var(--space-xl), env(safe-area-inset-top)) var(--space-lg) calc(96px + env(safe-area-inset-bottom, 0px));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.home--loading {
+  background: var(--paper);
+}
+
+.home__header {
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.home__eyebrow {
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  opacity: 0.5;
+  margin: 0 0 var(--space-xs);
+}
+
+.home__title {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.home__list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+  max-width: 640px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+@media (min-width: 700px) {
+  .home__list {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.home__card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  border-radius: var(--radius-lg, 22px);
+  overflow: hidden;
+  background: rgba(127, 127, 127, 0.06);
+  border: 1px solid rgba(127, 127, 127, 0.12);
+  transition: transform var(--motion-fast), border-color var(--motion-fast);
+}
+
+.home__card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(127, 127, 127, 0.28);
+}
+
+.home__card-art {
+  position: relative;
+  height: 120px;
+  overflow: hidden;
+}
+
+.home__card-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home__card-scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 40%, rgba(0, 0, 0, 0.28) 100%);
+}
+
+.home__card-body {
+  padding: var(--space-sm) var(--space-md) var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.home__card-name {
+  margin: 0;
+  line-height: 1.15;
+}
+
+.home__card-meta {
+  margin: 0;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+}
+
+.home__new {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--space-lg) + env(safe-area-inset-bottom, 0px));
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 24px;
+  border-radius: var(--radius-capsule);
+  background: var(--paper-ink);
+  color: var(--paper);
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+  z-index: 10;
+}
+
+.home__new-icon {
+  font-size: 18px;
+  line-height: 1;
+}
